@@ -1,38 +1,326 @@
-.App {
-  text-align: center;
+/* Kid-Friendly Piano App Theme */
+
+:root {
+  --purple: #9B59B6;
+  --pink: #FF6B9D;
+  --orange: #FF8C42;
+  --yellow: #FFD93D;
+  --green: #6BCB77;
+  --blue: #4D96FF;
+  --light-blue: #C8E6FF;
+  --bg: #FFF9F0;
+  --card-bg: #FFFFFF;
+  --text: #333;
+  --radius: 16px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+body {
+  background: var(--bg);
+  font-family: 'Comic Sans MS', 'Chalkboard SE', 'Arial Rounded MT Bold', cursive;
+  color: var(--text);
   min-height: 100vh;
+}
+
+.app-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Header */
+.app-header {
+  text-align: center;
+  padding: 24px;
+  background: linear-gradient(135deg, var(--purple), var(--pink));
+  border-radius: var(--radius);
+  margin-bottom: 24px;
+  box-shadow: 0 4px 15px rgba(155, 89, 182, 0.3);
+}
+
+.app-header h1 {
+  font-size: 2.5rem;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+  margin-bottom: 8px;
+}
+
+.app-header p {
+  color: rgba(255,255,255,0.9);
+  font-size: 1.1rem;
+}
+
+/* Mic status badge */
+.mic-status {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-top: 10px;
+}
+.mic-status.active { background: var(--green); color: white; }
+.mic-status.inactive { background: #ccc; color: #666; }
+
+/* Section cards */
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  border: 3px solid transparent;
+}
+
+.card.purple { border-color: var(--purple); }
+.card.blue   { border-color: var(--blue); }
+.card.green  { border-color: var(--green); }
+.card.orange { border-color: var(--orange); }
+
+.card h2 {
+  font-size: 1.4rem;
+  margin-bottom: 16px;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.1s;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.2);
+}
+
+.btn:active { transform: translateY(2px); box-shadow: 0 2px 0 rgba(0,0,0,0.2); }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+.btn-purple { background: var(--purple); color: white; }
+.btn-pink   { background: var(--pink);   color: white; }
+.btn-green  { background: var(--green);  color: white; }
+.btn-orange { background: var(--orange); color: white; }
+.btn-blue   { background: var(--blue);   color: white; }
+.btn-yellow { background: var(--yellow); color: #333; }
+
+/* Song list */
+.song-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+  max-height: 320px;
+  overflow-y: auto;
+  padding: 4px;
+}
+
+.song-card {
+  background: white;
+  border: 3px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+}
+
+.song-card:hover {
+  border-color: var(--blue);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(77,150,255,0.2);
+}
+
+.song-card.selected {
+  border-color: var(--purple);
+  background: linear-gradient(135deg, #f3e5ff, #fff);
+  box-shadow: 0 4px 12px rgba(155,89,182,0.3);
+}
+
+.song-card .song-title {
+  font-weight: bold;
+  font-size: 0.95rem;
+  margin-bottom: 6px;
+  color: var(--text);
+}
+
+.difficulty-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+.difficulty-badge.beginner     { background: #d4f5d4; color: #2d7a2d; }
+.difficulty-badge.intermediate { background: #fff0cc; color: #8a6000; }
+
+/* Keyboard */
+.keyboard-container {
+  overflow-x: auto;
+  padding: 16px 0;
+}
+
+.keyboard {
+  display: flex;
+  position: relative;
+  height: 180px;
+  width: max-content;
+  margin: 0 auto;
+}
+
+.key-white {
+  width: 52px;
+  height: 160px;
+  border: 2px solid #bbb;
+  border-radius: 0 0 10px 10px;
+  background: white;
+  cursor: default;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 8px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: #888;
+  transition: background 0.1s;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.key-white.target  { background: var(--yellow) !important; color: #333; }
+.key-white.played  { background: var(--green) !important; color: white; }
+.key-white.correct { background: var(--green) !important; color: white; }
+.key-white.wrong   { background: #FF6B6B !important; color: white; }
+
+.key-black {
+  width: 34px;
+  height: 100px;
+  background: #222;
+  border-radius: 0 0 8px 8px;
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  cursor: default;
+  transition: background 0.1s;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+.key-black.target  { background: var(--orange) !important; }
+.key-black.played  { background: var(--green) !important; }
+
+/* Feedback panel */
+.feedback-display {
+  text-align: center;
+  padding: 16px;
+}
+
+.detected-note {
+  font-size: 3rem;
+  font-weight: bold;
+  color: var(--purple);
+  min-height: 60px;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.feedback-message {
+  font-size: 1.5rem;
+  font-weight: bold;
+  min-height: 40px;
+  margin-top: 8px;
+}
+.feedback-message.perfect  { color: var(--green); }
+.feedback-message.good     { color: var(--blue); }
+.feedback-message.tryagain { color: var(--orange); }
+
+.score-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.score-item {
+  text-align: center;
+  background: #f5f5f5;
+  border-radius: 12px;
+  padding: 10px 20px;
+  min-width: 80px;
+}
+
+.score-item .score-value {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--purple);
+}
+
+.score-item .score-label {
+  font-size: 0.75rem;
+  color: #888;
+}
+
+/* Progress bar */
+.progress-bar-bg {
+  background: #eee;
+  border-radius: 20px;
+  height: 14px;
+  margin: 10px 0;
+  overflow: hidden;
+}
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--purple), var(--pink));
+  border-radius: 20px;
+  transition: width 0.3s;
+}
+
+/* Mode tabs */
+.mode-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.mode-tab {
+  flex: 1;
+  padding: 10px;
+  border: 3px solid #eee;
+  border-radius: 12px;
+  background: white;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: #888;
+}
+.mode-tab.active {
+  border-color: var(--purple);
+  background: var(--purple);
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+/* Lesson step indicators */
+.step-dots {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin: 8px 0;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.step-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #ddd;
 }
+.step-dot.done    { background: var(--green); }
+.step-dot.current { background: var(--yellow); border: 2px solid var(--orange); }
