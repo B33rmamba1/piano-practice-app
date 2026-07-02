@@ -96,31 +96,31 @@ const SceneBanner: React.FC<{songId: string; height?: number; showTitle?: boolea
 const STAFF_LINE_POSITIONS = [2, 4, 6, 8, 10]; // E4, G4, B4, D5, F5
 
 const SheetMusicStaff: React.FC<{song: Song; currentStep: number}> = ({song, currentStep}) => {
-  const VISIBLE = 8;
+  const VISIBLE = 6;
   const start = Math.max(0, currentStep - 1);
   const end = Math.min(song.notes.length, start + VISIBLE);
   const notes = song.notes.slice(start, end);
 
   const staffTop = 20;
   const lineSpacing = 10;
-  const noteStartX = 80;
-  const noteSpacing = 60;
+  const noteStartX = 90;
+  const noteSpacing = 85;
 
   const yForPosition = (pos: number) => {
     return staffTop + (10 - pos) * (lineSpacing / 2);
   };
 
   return (
-    <div style={{ background: 'rgba(255,255,255,0.06)', borderRadius: 12, padding: '12px 8px', marginBottom: 12, overflow: 'hidden' }}>
-      <svg width="100%" viewBox="0 0 580 80" style={{ display: 'block' }}>
+    <div style={{ background: 'white', borderRadius: 12, padding: '12px 8px', marginBottom: 12, overflow: 'hidden', border: '2px solid rgba(196,30,140,0.15)' }}>
+      <svg width="100%" viewBox="0 0 620 90" preserveAspectRatio="xMinYMid meet" style={{ display: 'block' }}>
         {/* Staff lines */}
         {STAFF_LINE_POSITIONS.map((pos, i) => (
-          <line key={i} x1="10" y1={yForPosition(pos)} x2="570" y2={yForPosition(pos)}
-            stroke="rgba(255,255,255,0.2)" strokeWidth="1" />
+          <line key={i} x1="10" y1={yForPosition(pos)} x2="610" y2={yForPosition(pos)}
+            stroke="rgba(0,0,0,0.25)" strokeWidth="1" />
         ))}
 
         {/* Treble clef symbol */}
-        <text x="20" y={yForPosition(4) + 6} fill="rgba(255,255,255,0.5)" fontSize="32"
+        <text x="20" y={yForPosition(4) + 6} fill="rgba(0,0,0,0.5)" fontSize="32"
           fontFamily="serif" style={{userSelect:'none'}}>𝄞</text>
 
         {/* Notes */}
@@ -142,26 +142,26 @@ const SheetMusicStaff: React.FC<{song: Song; currentStep: number}> = ({song, cur
 
               {/* Note head */}
               <ellipse cx={x+4} cy={y} rx={7} ry={5}
-                fill={isCurrent ? color : isPast ? 'rgba(255,255,255,0.2)' : 'rgba(255,255,255,0.4)'}
-                stroke={isCurrent ? 'white' : 'none'} strokeWidth={isCurrent ? 1.5 : 0}
+                fill={isCurrent ? '#1a1a1a' : isPast ? 'rgba(0,0,0,0.15)' : 'rgba(0,0,0,0.5)'}
+                stroke={isCurrent ? '#7B2FBE' : 'none'} strokeWidth={isCurrent ? 2 : 0}
                 transform={`rotate(-10 ${x+4} ${y})`}
               />
 
               {/* Stem */}
               <line x1={x+11} y1={y} x2={x+11} y2={y - 28}
-                stroke={isCurrent ? color : isPast ? 'rgba(255,255,255,0.15)' : 'rgba(255,255,255,0.3)'}
+                stroke={isCurrent ? '#1a1a1a' : isPast ? 'rgba(0,0,0,0.15)' : 'rgba(0,0,0,0.4)'}
                 strokeWidth="1.5" />
 
               {/* Note name label */}
               <text x={x+4} y={y + 18} textAnchor="middle" fontSize="9"
-                fill={isCurrent ? color : 'rgba(255,255,255,0.35)'} fontWeight={isCurrent ? 700 : 400}>
+                fill={isCurrent ? '#7B2FBE' : 'rgba(0,0,0,0.4)'} fontWeight={isCurrent ? 700 : 400}>
                 {noteLabel(note.pitch).replace(/[0-9]/g,'')}
               </text>
 
               {/* Finger number */}
               {isCurrent && (
                 <text x={x+4} y={y - 32} textAnchor="middle" fontSize="11"
-                  fill={color} fontWeight="700">
+                  fill="#C41E8C" fontWeight="700">
                   {fingerForNote(note.pitch)}
                 </text>
               )}
@@ -178,38 +178,50 @@ const SheetMusicStaff: React.FC<{song: Song; currentStep: number}> = ({song, cur
 // ═══════════════════════════════════════════════════════════════
 const HandDiagram: React.FC<{activeFinger: number; noteColor: string}> = ({activeFinger, noteColor: color}) => {
   const fingers = [
-    { id: 1, label: '1', x: 18, y: 30, h: 22, name: 'Thumb' },
-    { id: 2, label: '2', x: 34, y: 14, h: 32, name: 'Index' },
-    { id: 3, label: '3', x: 50, y: 8,  h: 36, name: 'Middle' },
-    { id: 4, label: '4', x: 66, y: 14, h: 32, name: 'Ring' },
-    { id: 5, label: '5', x: 82, y: 22, h: 26, name: 'Pinky' },
+    { id: 1, label: '1', cx: 28, cy: 75, rx: 10, ry: 14, rotate: -38, name: 'Thumb' },
+    { id: 2, label: '2', cx: 52, cy: 44, rx: 9,  ry: 20, rotate: -5,  name: 'Index' },
+    { id: 3, label: '3', cx: 72, cy: 38, rx: 9,  ry: 22, rotate: 0,   name: 'Middle' },
+    { id: 4, label: '4', cx: 91, cy: 42, rx: 9,  ry: 20, rotate: 5,   name: 'Ring' },
+    { id: 5, label: '5', cx: 108, cy: 54, rx: 8, ry: 15, rotate: 16,  name: 'Pinky' },
   ];
 
   return (
     <div style={{ textAlign: 'center' }}>
-      <svg width="120" height="85" viewBox="0 0 120 85" style={{ display: 'block', margin: '0 auto' }}>
-        {/* Palm */}
-        <ellipse cx="55" cy="68" rx="35" ry="16" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
+      <svg width="150" height="125" viewBox="0 0 150 125" style={{ display: 'block', margin: '0 auto' }}>
+        {/* Palm - solid visible shape */}
+        <ellipse cx="75" cy="107" rx="45" ry="17"
+          fill="#F5C5D8" stroke="#D4879E" strokeWidth="2" />
 
         {/* Fingers */}
         {fingers.map(f => {
           const isActive = f.id === activeFinger;
           return (
-            <g key={f.id}>
-              <rect x={f.x - 6} y={f.y} width={14} height={f.h} rx={6}
-                fill={isActive ? color : 'rgba(255,255,255,0.08)'}
-                stroke={isActive ? 'white' : 'rgba(255,255,255,0.15)'} strokeWidth={isActive ? 1.5 : 1}
+            <g key={f.id} transform={`rotate(${f.rotate} ${f.cx} ${f.cy + f.ry})`}>
+              <rect
+                x={f.cx - f.rx} y={f.cy - f.ry}
+                width={f.rx * 2} height={f.ry * 2}
+                rx={f.rx}
+                fill={isActive ? color : '#F5C5D8'}
+                stroke={isActive ? '#7B2FBE' : '#D4879E'}
+                strokeWidth={isActive ? 2.5 : 1.5}
               />
-              <text x={f.x + 1} y={f.y + f.h/2 + 4} textAnchor="middle" fontSize="10"
-                fill={isActive ? 'white' : 'rgba(255,255,255,0.4)'} fontWeight="700">
+              {/* Knuckle crease */}
+              <line
+                x1={f.cx - f.rx + 3} y1={f.cy + f.ry * 0.35}
+                x2={f.cx + f.rx - 3} y2={f.cy + f.ry * 0.35}
+                stroke={isActive ? 'rgba(255,255,255,0.5)' : '#D4879E'}
+                strokeWidth="1"
+              />
+              <text x={f.cx} y={f.cy + 5} textAnchor="middle" fontSize="12"
+                fill={isActive ? 'white' : '#7B2FBE'} fontWeight="900">
                 {f.label}
               </text>
             </g>
           );
         })}
       </svg>
-      <div style={{ fontSize: 11, color: activeFinger ? color : 'rgba(255,255,255,0.4)', fontWeight: 700, marginTop: 2 }}>
-        {activeFinger ? FINGER_NAMES[activeFinger] : ''}
+      <div style={{ fontSize: 13, color: activeFinger ? color : '#C41E8C', fontWeight: 800, marginTop: 2 }}>
+        {activeFinger ? `Use finger ${activeFinger} (${FINGER_NAMES[activeFinger]})` : ''}
       </div>
     </div>
   );
@@ -219,60 +231,113 @@ const HandDiagram: React.FC<{activeFinger: number; noteColor: string}> = ({activ
 // Colorful Keyboard
 // ═══════════════════════════════════════════════════════════════
 const WHITE_SEMITONES = [0, 2, 4, 5, 7, 9, 11];
-const BLACK_POSITIONS: Record<number, number> = { 1: 31, 3: 81, 6: 177, 8: 227, 10: 277 };
+const WHITE_NOTE_NAMES = ['C','D','E','F','G','A','B'];
+const BLACK_POSITIONS: Record<number, number> = { 1: 23, 3: 64, 6: 135, 8: 172, 10: 210 };
+
+// Hand position mapping - for C major position, which 5 keys map to fingers 1-5
+function getHandPositionKeys(targetMidi: number | null): Record<number, number> {
+  if (targetMidi === null) return {};
+  // Find the root of the hand position (thumb on C, or nearest C below target)
+  const octave = Math.floor(targetMidi / 12);
+  const C = octave * 12; // C of this octave
+  // White key MIDI values for a 5-finger C position
+  const positions: Record<number, number> = {
+    1: C,     // Thumb  = C
+    2: C + 2, // Index  = D
+    3: C + 4, // Middle = E
+    4: C + 5, // Ring   = F
+    5: C + 7, // Pinky  = G
+  };
+  return positions;
+}
 
 const ColorKeyboard: React.FC<{targetMidi: number|null; detectedMidi: number|null}> = ({targetMidi, detectedMidi}) => {
-  const startOctave = 3;
-  const numOctaves = 3;
-  const kw = 46;
-  const ow = 7 * kw;
+  const startOctave = 2;
+  const numOctaves = 5;
+  const totalWhiteKeys = numOctaves * 7 + 1; // 36 keys: C2 to C7
+  const wPct = 100 / totalWhiteKeys;
+
+  const whiteKeys: {midi:number; octave:number; noteName:string; globalIdx:number}[] = [];
+  for (let oi = 0; oi < numOctaves; oi++) {
+    const oct = startOctave + oi;
+    WHITE_SEMITONES.forEach((s, i) => {
+      whiteKeys.push({ midi: (oct+1)*12+s, octave: oct+1, noteName: WHITE_NOTE_NAMES[i], globalIdx: whiteKeys.length });
+    });
+  }
+  whiteKeys.push({ midi: 84, octave: 7, noteName: 'C', globalIdx: whiteKeys.length });
+
+  const blackKeyInfo = [
+    { semitone: 1, afterWhite: 0.65 },
+    { semitone: 3, afterWhite: 1.65 },
+    { semitone: 6, afterWhite: 3.65 },
+    { semitone: 8, afterWhite: 4.65 },
+    { semitone: 10, afterWhite: 5.65 },
+  ];
 
   return (
     <div className="keyboard-section">
       <div className="keyboard-scroll">
-        <div className="piano" style={{ width: numOctaves * ow }}>
+        <div className="piano">
+          {whiteKeys.map((k) => {
+            const isT = targetMidi === k.midi;
+            const isD = detectedMidi === k.midi;
+            const handPos = getHandPositionKeys(targetMidi);
+            const fingerNum = Object.entries(handPos).find(([,v]) => v === k.midi)?.[0];
+            let cls = 'pk-white';
+            if (isT && isD) cls += ' detected';
+            else if (isT) cls += ' target';
+            else if (isD) cls += ' detected';
+            return (
+              <div key={k.midi} className={cls}
+                style={{
+                  left: (k.globalIdx * wPct) + '%',
+                  width: wPct + '%',
+                  position: 'absolute',
+                  '--note-color': noteColor(k.midi),
+                } as React.CSSProperties}>
+                {fingerNum && !isT && !isD ? (
+                  <div style={{
+                    width:14,height:14,borderRadius:'50%',
+                    background:'rgba(196,30,140,0.15)',
+                    border:'1.5px solid rgba(196,30,140,0.4)',
+                    display:'flex',alignItems:'center',justifyContent:'center',
+                    fontSize:8,fontWeight:800,color:'#C41E8C',marginBottom:1,
+                  }}>{fingerNum}</div>
+                ) : (
+                  <div style={{width:5,height:5,borderRadius:'50%',background:isT||isD?'white':noteColor(k.midi),opacity:isT||isD?0.9:0.5,marginBottom:2}} />
+                )}
+                <span style={{fontSize:'0.45rem',color:isT||isD?'white':'#666',fontWeight:700,lineHeight:1}}>
+                  {k.noteName}{k.octave}
+                </span>
+              </div>
+            );
+          })}
           {Array.from({length: numOctaves}, (_, oi) => {
             const oct = startOctave + oi;
-            const bl = oi * ow;
-            return (
-              <React.Fragment key={oct}>
-                {WHITE_SEMITONES.map((s, i) => {
-                  const midi = (oct+1)*12+s;
-                  const isT = targetMidi===midi;
-                  const isD = detectedMidi===midi;
-                  let cls = 'pk-white';
-                  if (isT && isD) cls += ' detected';
-                  else if (isT) cls += ' target';
-                  else if (isD) cls += ' detected';
-                  return (
-                    <div key={midi} className={cls}
-                      style={{left: bl+i*kw, position:'absolute', '--note-color': noteColor(midi)} as React.CSSProperties}>
-                      <span style={{width:8,height:8,borderRadius:'50%',background:noteColor(midi),opacity:0.5,marginBottom:4,display:'block'}} />
-                      {s===0 && <span>C{oct+1}</span>}
-                    </div>
-                  );
-                })}
-                {[1,3,6,8,10].map(s => {
-                  const midi = (oct+1)*12+s;
-                  const isT = targetMidi===midi;
-                  const isD = detectedMidi===midi;
-                  let cls = 'pk-black';
-                  if (isT) cls += ' target';
-                  if (isD) cls += ' detected';
-                  return (
-                    <div key={midi} className={cls}
-                      style={{left: bl+(BLACK_POSITIONS[s]??0), '--note-color': noteColor(midi)} as React.CSSProperties} />
-                  );
-                })}
-              </React.Fragment>
-            );
+            const octWhiteStart = oi * 7;
+            return blackKeyInfo.map(bk => {
+              const midi = (oct+1)*12 + bk.semitone;
+              const isT = targetMidi === midi;
+              const isD = detectedMidi === midi;
+              let cls = 'pk-black';
+              if (isT) cls += ' target';
+              if (isD) cls += ' detected';
+              const leftPct = (octWhiteStart + bk.afterWhite) * wPct;
+              return (
+                <div key={midi} className={cls}
+                  style={{
+                    left: leftPct + '%',
+                    width: (wPct * 0.65) + '%',
+                    '--note-color': noteColor(midi),
+                  } as React.CSSProperties} />
+              );
+            });
           })}
         </div>
       </div>
     </div>
   );
 };
-
 // ═══════════════════════════════════════════════════════════════
 // Note Highway
 // ═══════════════════════════════════════════════════════════════
@@ -377,20 +442,23 @@ const PracticeScreen: React.FC<{song:Song; onBack:()=>void; onComplete:(c:number
   const [feedbackTrigger, setFeedbackTrigger] = useState(0);
   const [correctCount, setCorrectCount] = useState(0);
   const lastRef = useRef<number>(0);
+  const isActiveRef = useRef<boolean>(true);
 
   const detectedMidi = state.lastDetectedEvent?.pitch ?? null;
   const targetMidi = currentStep < song.notes.length ? song.notes[currentStep].pitch : null;
   const activeFinger = targetMidi !== null ? fingerForNote(targetMidi) : 0;
 
   useEffect(() => {
+    isActiveRef.current = true;
     if (song.notes.length > 0) {
       dispatch({type:'SET_TARGET_NOTE', payload:{pitch:song.notes[0].pitch, keyName:noteLabel(song.notes[0].pitch)}});
     }
-    return () => { dispatch({type:'END_LESSON'}); };
+    return () => { isActiveRef.current = false; dispatch({type:'END_LESSON'}); };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
+    if (!isActiveRef.current) return;
     if (detectedMidi===null || targetMidi===null || currentStep>=song.notes.length) return;
     const now = Date.now();
     if (now - lastRef.current < 200) return;
@@ -407,6 +475,11 @@ const PracticeScreen: React.FC<{song:Song; onBack:()=>void; onComplete:(c:number
         setCurrentStep(next);
         dispatch({type:'SET_TARGET_NOTE', payload:{pitch:song.notes[next].pitch, keyName:noteLabel(song.notes[next].pitch)}});
       }
+    } else {
+      lastRef.current = now;
+      setCurrentStep(0);
+      setPlayedSteps(new Set());
+      dispatch({type:'SET_TARGET_NOTE', payload:{pitch:song.notes[0].pitch, keyName:noteLabel(song.notes[0].pitch)}});
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [detectedMidi]);
@@ -419,15 +492,18 @@ const PracticeScreen: React.FC<{song:Song; onBack:()=>void; onComplete:(c:number
 
       {/* Top bar */}
       <div className="practice-topbar">
-        <button className="back-btn" onClick={onBack}>←</button>
+        <button className="back-btn" onClick={() => { isActiveRef.current = false; onBack(); }}>←</button>
         <div className="song-info">
           <h2>{song.title}</h2>
           <span className="progress-text">Note {currentStep+1} of {song.notes.length}</span>
         </div>
       </div>
 
-      <div className="progress-bar">
-        <div className="progress-fill" style={{width: progress+'%'}} />
+      <div style={{display:'flex', alignItems:'center', gap:12, marginBottom:16}}>
+        <div className="progress-bar" style={{flex:1}}>
+          <div className="progress-fill" style={{width: progress+'%'}} />
+        </div>
+        <span style={{fontSize:'1.1rem', fontWeight:700, color:'#01C08B', minWidth:50}}>{progress}%</span>
       </div>
 
       {/* Scene banner */}

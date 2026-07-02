@@ -13,11 +13,11 @@
   --c-pink: #FF69B4;
   --c-magenta: #B10DC9;
 
-  --bg-gradient: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-  --card-bg: rgba(255,255,255,0.08);
-  --card-border: rgba(255,255,255,0.12);
-  --text-primary: #FFFFFF;
-  --text-muted: rgba(255,255,255,0.6);
+  --bg-gradient: linear-gradient(160deg, #FFD6E7 0%, #FFAFD2 40%, #FFC8E4 70%, #FFD6E7 100%);
+  --card-bg: rgba(255,255,255,0.55);
+  --card-border: rgba(255,150,200,0.25);
+  --text-primary: #4A1942;
+  --text-muted: rgba(74,25,66,0.6);
   --radius: 20px;
   --radius-sm: 12px;
 }
@@ -34,10 +34,11 @@ body {
 
 /* ─── App Shell ─────────────────────────────────────────────── */
 .app-shell {
-  max-width: 900px;
+  width: 100%;
   margin: 0 auto;
-  padding: 16px;
+  padding: 12px 16px;
   min-height: 100vh;
+  box-sizing: border-box;
 }
 
 /* ─── HOME SCREEN ───────────────────────────────────────────── */
@@ -47,7 +48,7 @@ body {
 }
 .home-header h1 {
   font-size: 2.8rem;
-  background: linear-gradient(135deg, var(--c-yellow), var(--c-pink), var(--c-purple));
+  background: linear-gradient(135deg, #C41E8C, #7B2FBE, #FF69B4);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -76,14 +77,15 @@ body {
 }
 
 .song-card-home {
-  background: var(--card-bg);
-  border: 2px solid var(--card-border);
+  background: rgba(255,255,255,0.7);
+  border: 2px solid rgba(255,150,200,0.3);
   border-radius: var(--radius-sm);
   padding: 16px 14px;
   cursor: pointer;
   transition: all 0.2s ease;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 2px 12px rgba(196,30,140,0.1);
 }
 .song-card-home::before {
   content: '';
@@ -127,6 +129,8 @@ body {
   display: flex;
   flex-direction: column;
   min-height: calc(100vh - 32px);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* Top bar */
@@ -175,12 +179,13 @@ body {
 
 /* Note Highway */
 .highway-wrapper {
-  background: var(--card-bg);
-  border: 2px solid var(--card-border);
+  background: rgba(255,255,255,0.6);
+  border: 2px solid rgba(255,150,200,0.3);
   border-radius: var(--radius);
-  padding: 24px 16px;
+  padding: 16px;
   margin-bottom: 16px;
   text-align: center;
+  overflow: hidden;
 }
 
 .highway-label {
@@ -304,33 +309,36 @@ body {
 
 /* ─── Keyboard (Colorful) ──────────────────────────────────── */
 .keyboard-section {
-  background: var(--card-bg);
-  border: 2px solid var(--card-border);
+  background: white;
+  border: 2px solid rgba(196,30,140,0.2);
   border-radius: var(--radius);
-  padding: 16px;
+  padding: 8px 4px 4px;
   margin-bottom: 16px;
+  box-shadow: 0 2px 12px rgba(196,30,140,0.08);
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .keyboard-scroll {
-  overflow-x: auto;
-  padding-bottom: 8px;
-  -webkit-overflow-scrolling: touch;
+  overflow: hidden;
+  padding-bottom: 4px;
+  width: 100%;
+  display: block;
 }
 
 .piano {
-  display: flex;
+  display: block;
   position: relative;
   height: 140px;
-  width: max-content;
-  margin: 0 auto;
+  width: 100%;
 }
 
 .pk-white {
-  width: 46px;
-  height: 130px;
-  border: 2px solid rgba(255,255,255,0.15);
+  height: 120px;
+  border: 2px solid #dbb8c8;
   border-radius: 0 0 10px 10px;
-  background: rgba(255,255,255,0.06);
+  background: white;
   position: relative;
   z-index: 1;
   display: flex;
@@ -340,9 +348,10 @@ body {
   padding-bottom: 6px;
   font-size: 0.65rem;
   font-weight: 700;
-  color: rgba(255,255,255,0.4);
+  color: #888;
   transition: all 0.15s ease;
   cursor: default;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
 }
 
 .pk-white.target {
@@ -364,15 +373,15 @@ body {
 }
 
 .pk-black {
-  width: 30px;
-  height: 80px;
-  background: rgba(20,20,30,0.9);
-  border: 2px solid rgba(255,255,255,0.08);
+  height: 75px;
+  background: #222;
+  border: 2px solid #111;
   border-radius: 0 0 6px 6px;
   position: absolute;
   z-index: 2;
   top: 0;
   transition: all 0.15s ease;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.4);
 }
 .pk-black.target {
   background: var(--note-color) !important;
@@ -400,8 +409,8 @@ body {
 
 .score-box {
   text-align: center;
-  background: var(--card-bg);
-  border: 2px solid var(--card-border);
+  background: rgba(255,255,255,0.7);
+  border: 2px solid rgba(255,150,200,0.3);
   border-radius: var(--radius-sm);
   padding: 10px 20px;
   min-width: 80px;
@@ -556,9 +565,19 @@ body {
 
 /* ─── Responsive ────────────────────────────────────────────── */
 @media (max-width: 600px) {
-  .home-header h1 { font-size: 2rem; }
-  .songs-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
-  .highway-note.current { width: 64px; height: 64px; font-size: 1.1rem; }
-  .pk-white { width: 36px; height: 110px; }
-  .pk-black { width: 24px; height: 65px; }
+  .home-header h1 { font-size: 1.8rem; }
+  .songs-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+  .highway-note.current { width: 60px; height: 60px; font-size: 1rem; }
+  .pk-white { width: 28px; height: 100px; font-size: 0.45rem; }
+  .pk-black { width: 18px; height: 60px; }
+  .score-bar { gap: 10px; }
+  .score-box { padding: 8px 12px; min-width: 60px; }
+  .score-box .val { font-size: 1.2rem; }
+  .practice-topbar h2 { font-size: 0.9rem; }
+}
+
+@media (max-width: 400px) {
+  .app-shell { padding: 10px; }
+  .home-header h1 { font-size: 1.5rem; }
+  .highway-note.current { width: 52px; height: 52px; font-size: 0.9rem; }
 }
