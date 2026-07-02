@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/piano-practice-app/static/css/main.b00a1511.css",
+    "main.js": "/piano-practice-app/static/js/main.9496eb68.js",
+    "static/js/453.2bf0c07f.chunk.js": "/piano-practice-app/static/js/453.2bf0c07f.chunk.js",
+    "index.html": "/piano-practice-app/index.html",
+    "main.b00a1511.css.map": "/piano-practice-app/static/css/main.b00a1511.css.map",
+    "main.9496eb68.js.map": "/piano-practice-app/static/js/main.9496eb68.js.map",
+    "453.2bf0c07f.chunk.js.map": "/piano-practice-app/static/js/453.2bf0c07f.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b00a1511.css",
+    "static/js/main.9496eb68.js"
+  ]
+}
