@@ -1,0 +1,324 @@
+/* ═══════════════════════════════════════════════════════════════
+   Song Scene Styles — 25 Animated SVG Scenes
+   ═══════════════════════════════════════════════════════════════ */
+
+.song-scene {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.scene-title {
+  position: absolute;
+  bottom: 12px;
+  width: 100%;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.85);
+  text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+  z-index: 10;
+}
+
+/* ─── Scene Backgrounds ─────────────────────────────────────── */
+.sc-night    { background: linear-gradient(180deg, #0f1638 0%, #1a237e 60%, #283593 100%); }
+.sc-party    { background: linear-gradient(135deg, #CE93D8 0%, #F48FB1 50%, #FFE082 100%); }
+.sc-meadow   { background: linear-gradient(180deg, #81D4FA 0%, #B3E5FC 45%, #66BB6A 45%, #43A047 100%); }
+.sc-bakery   { background: linear-gradient(180deg, #FFCCBC 0%, #D7CCC8 50%, #8D6E63 100%); }
+.sc-farm     { background: linear-gradient(180deg, #81D4FA 0%, #B3E5FC 45%, #66BB6A 45%, #388E3C 100%); }
+.sc-river    { background: linear-gradient(180deg, #81D4FA 0%, #B3E5FC 40%, #4FC3F7 40%, #0288D1 100%); }
+.sc-rain     { background: linear-gradient(180deg, #78909C 0%, #90A4AE 40%, #546E7A 100%); }
+.sc-bridge   { background: linear-gradient(180deg, #B0BEC5 0%, #CFD8DC 35%, #4FC3F7 35%, #0288D1 100%); }
+.sc-sunshine { background: linear-gradient(180deg, #FFF9C4 0%, #FFECB3 30%, #81D4FA 30%, #4FC3F7 50%, #66BB6A 50%, #43A047 100%); }
+.sc-snow     { background: linear-gradient(180deg, #B0BEC5 0%, #CFD8DC 60%, #ECEFF1 60%, #fff 100%); }
+.sc-morning  { background: linear-gradient(180deg, #1a237e 0%, #5C6BC0 30%, #FFB74D 60%, #FFE082 100%); }
+.sc-golden   { background: linear-gradient(135deg, #FFD54F 0%, #FFB300 50%, #FF8F00 100%); }
+.sc-sunset   { background: linear-gradient(180deg, #1a237e 0%, #E65100 40%, #FF8F00 60%, #FFD54F 80%, #5D4037 80%, #3E2723 100%); }
+.sc-garden   { background: linear-gradient(180deg, #81D4FA 0%, #B3E5FC 45%, #A5D6A7 45%, #66BB6A 100%); }
+.sc-path     { background: linear-gradient(180deg, #81D4FA 0%, #B3E5FC 40%, #A5D6A7 40%, #66BB6A 70%, #8D6E63 70%, #6D4C41 100%); }
+.sc-rainbow  { background: linear-gradient(180deg, #E3F2FD 0%, #BBDEFB 50%, #81D4FA 100%); }
+.sc-happy    { background: linear-gradient(135deg, #FFF9C4 0%, #FFECB3 50%, #FFE082 100%); }
+.sc-road     { background: linear-gradient(180deg, #81D4FA 0%, #B3E5FC 45%, #A5D6A7 45%, #66BB6A 65%, #757575 65%, #616161 100%); }
+.sc-letters  { background: linear-gradient(135deg, #E8EAF6 0%, #C5CAE9 50%, #9FA8DA 100%); }
+.sc-clock    { background: linear-gradient(180deg, #D7CCC8 0%, #BCAAA4 100%); }
+.sc-hill     { background: linear-gradient(180deg, #81D4FA 0%, #B3E5FC 40%, #A5D6A7 40%, #66BB6A 100%); }
+.sc-circus   { background: linear-gradient(135deg, #CE93D8 0%, #F48FB1 50%, #FFCC02 100%); }
+.sc-patriot  { background: linear-gradient(180deg, #E3F2FD 0%, #BBDEFB 50%, #A5D6A7 50%, #66BB6A 100%); }
+.sc-default  { background: linear-gradient(135deg, #7B2FBE 0%, #0074D9 100%); }
+
+/* ─── Shared Elements ───────────────────────────────────────── */
+.ss-star {
+  position: absolute;
+  border-radius: 50%;
+  background: #fff;
+  animation: ssStarTwinkle 2s ease-in-out infinite;
+}
+@keyframes ssStarTwinkle { 0%,100%{opacity:0.3;transform:scale(0.8)} 50%{opacity:1;transform:scale(1.3)} }
+
+.ss-moon {
+  position: absolute;
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: #FFE082;
+  top: 12%; right: 18%;
+  box-shadow: 0 0 20px rgba(255,224,130,0.5);
+}
+.ss-moon-shadow {
+  position: absolute;
+  width: 35px; height: 40px;
+  border-radius: 50%;
+  background: #1a237e;
+  top: 12%; right: 15%;
+}
+
+.ss-hill {
+  position: absolute;
+  bottom: 0; left: -10%;
+  width: 120%; height: 35px;
+  background: #1b3a1a;
+  border-radius: 50% 50% 0 0;
+}
+
+.ss-cloud {
+  position: absolute;
+  background: rgba(255,255,255,0.75);
+  border-radius: 20px;
+}
+.ss-cloud::before {
+  content: '';
+  position: absolute;
+  width: 55%; height: 130%;
+  background: rgba(255,255,255,0.75);
+  border-radius: 50%;
+  top: -50%; left: 20%;
+}
+
+.ss-sun-small {
+  position: absolute;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: #FFD54F;
+  top: 8%; right: 12%;
+  box-shadow: 0 0 15px rgba(255,213,79,0.5);
+}
+
+.ss-ground-meadow {
+  position: absolute;
+  bottom: 0; width: 100%; height: 2px;
+  background: #2E7D32;
+}
+
+.ss-ground-farm {
+  position: absolute;
+  bottom: 0; width: 100%; height: 2px;
+  background: #33691E;
+}
+
+/* ─── Balloons ──────────────────────────────────────────────── */
+.ss-balloon {
+  position: absolute;
+  width: 22px; height: 28px;
+  border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+  animation: ssFloat 3s ease-in-out infinite;
+}
+.ss-balloon::after {
+  content: '';
+  position: absolute;
+  bottom: -12px; left: 50%;
+  width: 1px; height: 14px;
+  background: rgba(0,0,0,0.2);
+}
+@keyframes ssFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+
+/* ─── Cake ──────────────────────────────────────────────────── */
+.ss-cake { position: absolute; bottom: 22px; left: 50%; transform: translateX(-50%); }
+.ss-cake-base { width: 50px; height: 28px; background: #8D6E63; border-radius: 4px; }
+.ss-cake-frost { width: 50px; height: 8px; background: #F8BBD0; border-radius: 4px 4px 0 0; position: absolute; top: 0; }
+.ss-candle { position: absolute; top: -16px; left: 50%; transform: translateX(-50%); width: 4px; height: 14px; background: #FFF9C4; border-radius: 2px; }
+.ss-flame { position: absolute; top: -24px; left: 50%; transform: translateX(-50%); width: 6px; height: 8px; background: #FF9800; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; animation: ssFlicker 0.4s ease-in-out infinite alternate; }
+@keyframes ssFlicker { 0%{transform:translateX(-50%) scale(1)} 100%{transform:translateX(-50%) scale(1.2) rotate(5deg)} }
+
+/* ─── Confetti ──────────────────────────────────────────────── */
+.ss-confetti {
+  position: absolute;
+  width: 6px; height: 6px;
+  top: -8px;
+  animation: ssConfettiFall 3s linear infinite;
+}
+@keyframes ssConfettiFall { 0%{transform:translateY(0) rotate(0);opacity:1} 100%{transform:translateY(200px) rotate(360deg);opacity:0} }
+
+/* ─── Lamb ──────────────────────────────────────────────────── */
+.ss-lamb { position: absolute; width: 36px; height: 30px; }
+.ss-lamb-body { width: 30px; height: 20px; background: #fff; border-radius: 12px; position: absolute; bottom: 8px; }
+.ss-lamb-head { width: 14px; height: 14px; background: #fff; border-radius: 50%; position: absolute; bottom: 14px; right: -4px; }
+.ss-lamb-leg { width: 4px; height: 10px; background: #bbb; border-radius: 2px; position: absolute; bottom: 0; }
+
+/* ─── Sheep (black) ─────────────────────────────────────────── */
+.ss-sheep { position: absolute; width: 40px; height: 32px; bottom: 25px; }
+.ss-sheep-body { width: 34px; height: 22px; background: #333; border-radius: 14px; position: absolute; bottom: 8px; }
+.ss-sheep-head { width: 14px; height: 14px; background: #222; border-radius: 50%; position: absolute; bottom: 16px; right: -2px; }
+.ss-sheep-leg { width: 4px; height: 10px; background: #555; border-radius: 2px; position: absolute; bottom: 0; }
+
+/* ─── Flowers ───────────────────────────────────────────────── */
+.ss-flower { position: absolute; width: 16px; height: 16px; }
+.ss-petal { position: absolute; width: 6px; height: 6px; border-radius: 50%; top: 50%; left: 50%; margin: -3px; transform-origin: center; }
+.ss-flower-center { position: absolute; width: 5px; height: 5px; background: #FFD54F; border-radius: 50%; top: 50%; left: 50%; margin: -2.5px; z-index: 1; }
+
+/* ─── Bakery ────────────────────────────────────────────────── */
+.ss-oven { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); width: 80px; height: 50px; background: #5D4037; border-radius: 8px 8px 0 0; border: 2px solid #4E342E; }
+.ss-bun { position: absolute; width: 24px; height: 16px; background: #D4A574; border-radius: 50% 50% 10% 10%; }
+.ss-bun::after { content: '+'; position: absolute; top: 1px; left: 50%; transform: translateX(-50%); font-size: 12px; color: #8D6E63; font-weight: bold; }
+.ss-steam { position: absolute; width: 3px; height: 12px; background: rgba(255,255,255,0.4); bottom: 75px; border-radius: 3px; animation: ssSteam 2s ease-in-out infinite; }
+@keyframes ssSteam { 0%{opacity:0;transform:translateY(0) scale(1)} 50%{opacity:0.6} 100%{opacity:0;transform:translateY(-20px) scale(1.5)} }
+.ss-counter { position: absolute; bottom: 0; width: 100%; height: 30px; background: #6D4C41; }
+
+/* ─── Farm ──────────────────────────────────────────────────── */
+.ss-barn { position: absolute; bottom: 22px; left: 35%; width: 50px; height: 38px; background: #D32F2F; border-radius: 3px 3px 0 0; }
+.ss-barn-roof { position: absolute; top: -14px; left: -5px; width: 0; height: 0; border-left: 30px solid transparent; border-right: 30px solid transparent; border-bottom: 16px solid #B71C1C; }
+.ss-barn-door { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 18px; height: 22px; background: #5D4037; border-radius: 9px 9px 0 0; }
+.ss-fence { position: absolute; bottom: 22px; right: 18%; width: 40px; height: 20px; border-top: 3px solid #A1887F; border-bottom: 3px solid #A1887F; }
+
+/* ─── Boat & Waves ──────────────────────────────────────────── */
+.ss-boat { position: absolute; bottom: 35px; left: 50%; transform: translateX(-50%); }
+.ss-boat-hull { width: 50px; height: 16px; background: #6D4C41; border-radius: 0 0 50% 50%; }
+.ss-boat-sail { position: absolute; top: -30px; left: 18px; width: 0; height: 0; border-left: 14px solid #fff; border-top: 12px solid transparent; border-bottom: 12px solid transparent; }
+.ss-wave { position: absolute; width: 120%; left: -10%; height: 12px; background: rgba(255,255,255,0.2); border-radius: 50%; animation: ssWave 3s ease-in-out infinite; }
+@keyframes ssWave { 0%,100%{transform:translateX(-5%)} 50%{transform:translateX(5%)} }
+
+/* ─── Rain & Spider ─────────────────────────────────────────── */
+.ss-raindrop { position: absolute; width: 2px; height: 10px; background: rgba(200,220,255,0.6); top: -10px; border-radius: 2px; animation: ssRain 1s linear infinite; }
+@keyframes ssRain { 0%{transform:translateY(0);opacity:0.8} 100%{transform:translateY(200px);opacity:0} }
+.ss-spout { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); width: 20px; height: 60px; background: #78909C; border-radius: 4px; }
+.ss-web { position: absolute; top: 20%; left: 55%; width: 40px; height: 40px; border: 1px solid rgba(255,255,255,0.3); border-radius: 50%; }
+.ss-web::before { content: ''; position: absolute; width: 100%; height: 100%; border: 1px solid rgba(255,255,255,0.2); border-radius: 50%; transform: scale(0.6); top: 20%; left: 0; }
+.ss-spider { position: absolute; top: 25%; left: 58%; width: 8px; height: 8px; background: #333; border-radius: 50%; }
+.ss-spider::after { content: ''; position: absolute; top: -20px; left: 50%; width: 1px; height: 20px; background: rgba(255,255,255,0.3); }
+
+/* ─── Bridge ────────────────────────────────────────────────── */
+.ss-bridge-tower { position: absolute; bottom: 30px; width: 20px; height: 50px; background: #78909C; border-radius: 4px 4px 0 0; }
+.ss-bridge-span { position: absolute; bottom: 55px; left: 28%; width: 44%; height: 8px; background: #607D8B; border-radius: 4px; }
+.ss-bridge-water { position: absolute; bottom: 0; width: 100%; height: 30px; background: rgba(33,150,243,0.3); }
+
+/* ─── Sunshine ──────────────────────────────────────────────── */
+.ss-big-sun { position: absolute; top: -20px; left: 50%; transform: translateX(-50%); width: 80px; height: 80px; animation: ssSunPulse 4s ease-in-out infinite; }
+.ss-big-sun::before { content: ''; position: absolute; width: 60px; height: 60px; background: #FFD54F; border-radius: 50%; top: 10px; left: 10px; }
+.ss-sun-ray { position: absolute; width: 4px; height: 20px; background: #FFD54F; top: -10px; left: 50%; margin-left: -2px; transform-origin: 2px 50px; border-radius: 2px; }
+@keyframes ssSunPulse { 0%,100%{transform:translateX(-50%) scale(1)} 50%{transform:translateX(-50%) scale(1.05)} }
+.ss-ground-sunny { position: absolute; bottom: 0; width: 100%; height: 2px; background: #388E3C; }
+
+/* ─── Snow ──────────────────────────────────────────────────── */
+.ss-snow { position: absolute; background: white; border-radius: 50%; top: -8px; animation: ssSnowFall 4s linear infinite; opacity: 0.7; }
+@keyframes ssSnowFall { 0%{transform:translateY(0) rotate(0);opacity:0.7} 100%{transform:translateY(200px) rotate(180deg);opacity:0} }
+.ss-tree { position: absolute; bottom: 20px; }
+.ss-tree::before { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 6px; height: 14px; background: #5D4037; }
+.ss-tree::after { content: ''; position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 18px solid transparent; border-right: 18px solid transparent; border-bottom: 30px solid #2E7D32; }
+.ss-sleigh { position: absolute; bottom: 22px; left: 42%; width: 40px; height: 14px; background: #D32F2F; border-radius: 0 0 8px 2px; }
+.ss-snow-ground { position: absolute; bottom: 0; width: 100%; height: 20px; background: rgba(255,255,255,0.8); border-radius: 50% 50% 0 0; }
+
+/* ─── Morning / Bells ───────────────────────────────────────── */
+.ss-bell { position: absolute; top: 25%; width: 20px; height: 22px; background: #FFD54F; border-radius: 50% 50% 0 0; animation: ssBellSwing 1s ease-in-out infinite alternate; transform-origin: top center; }
+.ss-bell::after { content: ''; position: absolute; bottom: -4px; left: 50%; transform: translateX(-50%); width: 6px; height: 6px; background: #FFA000; border-radius: 50%; }
+@keyframes ssBellSwing { 0%{transform:rotate(-10deg)} 100%{transform:rotate(10deg)} }
+.ss-church-tower { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); width: 30px; height: 50px; background: #795548; border-radius: 4px 4px 0 0; }
+.ss-church-tower::after { content: ''; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 18px solid transparent; border-right: 18px solid transparent; border-bottom: 14px solid #6D4C41; }
+.ss-sunrise { position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); width: 80px; height: 40px; background: #FFB74D; border-radius: 80px 80px 0 0; opacity: 0.4; }
+
+/* ─── Music Notes ───────────────────────────────────────────── */
+.ss-music-note { position: absolute; font-size: 22px; animation: ssNoteFloat 3s ease-in-out infinite; }
+.ss-music-note::before { content: '\266B'; color: rgba(255,255,255,0.7); }
+@keyframes ssNoteFloat { 0%,100%{transform:translateY(0) rotate(0)} 50%{transform:translateY(-10px) rotate(10deg)} }
+
+/* ─── Golden Rays ───────────────────────────────────────────── */
+.ss-golden-rays { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(ellipse at 50% 120%, rgba(255,255,255,0.3) 0%, transparent 60%); }
+
+/* ─── Trumpet ───────────────────────────────────────────────── */
+.ss-trumpet { position: absolute; top: 35%; width: 40px; height: 16px; background: #FFD54F; border-radius: 2px 8px 8px 2px; }
+.ss-trumpet::after { content: ''; position: absolute; right: -12px; top: -4px; width: 14px; height: 24px; background: #FFB300; border-radius: 0 8px 8px 0; }
+
+/* ─── Sunset / Desert ───────────────────────────────────────── */
+.ss-sunset-sun { position: absolute; bottom: 35%; left: 50%; transform: translateX(-50%); width: 50px; height: 50px; border-radius: 50%; background: #FFD54F; box-shadow: 0 0 30px rgba(255,213,79,0.5); }
+.ss-cactus { position: absolute; bottom: 22px; width: 12px; height: 35px; background: #388E3C; border-radius: 6px 6px 0 0; }
+.ss-cactus::before { content: ''; position: absolute; top: 10px; left: -8px; width: 8px; height: 18px; background: #388E3C; border-radius: 6px 0 0 6px; }
+.ss-desert-ground { position: absolute; bottom: 0; width: 100%; height: 22px; background: #5D4037; }
+
+/* ─── Butterfly ─────────────────────────────────────────────── */
+.ss-butterfly { position: absolute; animation: ssButterflyFly 4s ease-in-out infinite; }
+.ss-butterfly::before, .ss-butterfly::after { content: ''; position: absolute; width: 10px; height: 14px; background: #CE93D8; border-radius: 50%; }
+.ss-butterfly::before { left: -6px; transform: rotate(-20deg); }
+.ss-butterfly::after { right: -6px; transform: rotate(20deg); background: #F48FB1; }
+@keyframes ssButterflyFly { 0%,100%{transform:translate(0,0)} 25%{transform:translate(10px,-8px)} 50%{transform:translate(5px,5px)} 75%{transform:translate(-5px,-3px)} }
+
+/* ─── Path ──────────────────────────────────────────────────── */
+.ss-path-road { position: absolute; bottom: 0; width: 100%; height: 25px; background: #8D6E63; }
+.ss-walking-stick { position: absolute; bottom: 28px; left: 55%; width: 4px; height: 35px; background: #5D4037; border-radius: 2px; transform: rotate(-10deg); }
+
+/* ─── Flower Ring ───────────────────────────────────────────── */
+.ss-flower-ring { position: absolute; top: 30%; left: 50%; transform: translateX(-50%); width: 130px; height: 20px; display: flex; gap: 0; }
+
+/* ─── Rainbow ───────────────────────────────────────────────── */
+.ss-rainbow { position: absolute; top: 10%; left: 50%; transform: translateX(-50%); width: 160px; height: 80px; border-radius: 80px 80px 0 0; border: 6px solid transparent; border-top: 6px solid #EF5350; box-shadow: 0 -6px 0 #FF9800, 0 -12px 0 #FFEB3B, 0 -18px 0 #4CAF50, 0 -24px 0 #2196F3, 0 -30px 0 #9C27B0; }
+.ss-figure { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); width: 16px; height: 32px; background: #FFB74D; border-radius: 8px 8px 4px 4px; }
+.ss-figure::before { content: ''; position: absolute; top: -10px; left: 50%; transform: translateX(-50%); width: 14px; height: 14px; background: #FFB74D; border-radius: 50%; }
+
+/* ─── Smiley ────────────────────────────────────────────────── */
+.ss-smiley { position: absolute; width: 36px; height: 36px; background: #FFD54F; border-radius: 50%; animation: ssSmileBounce 2s ease-in-out infinite; }
+.ss-smiley::before { content: ''; position: absolute; top: 12px; left: 8px; width: 5px; height: 5px; background: #333; border-radius: 50%; box-shadow: 14px 0 0 #333; }
+.ss-smiley::after { content: ''; position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%); width: 14px; height: 7px; border-bottom: 2px solid #333; border-radius: 0 0 10px 10px; }
+@keyframes ssSmileBounce { 0%,100%{transform:scale(1)} 50%{transform:scale(1.1)} }
+.ss-clap-hands { position: absolute; bottom: 30px; font-size: 28px; }
+.ss-clap-hands::before { content: '\1F44F'; }
+
+/* ─── Bus ───────────────────────────────────────────────────── */
+.ss-bus { position: absolute; bottom: 25px; left: 50%; transform: translateX(-50%); }
+.ss-bus-body { width: 75px; height: 35px; background: #FFA726; border-radius: 6px; }
+.ss-bus-window { position: absolute; top: 6px; width: 14px; height: 12px; background: #81D4FA; border-radius: 3px; }
+.ss-bus-wheel { position: absolute; bottom: -6px; width: 14px; height: 14px; background: #333; border-radius: 50%; }
+.ss-bus-wheel::after { content: ''; position: absolute; top: 3px; left: 3px; width: 8px; height: 8px; background: #666; border-radius: 50%; }
+.ss-road-line { position: absolute; bottom: 12px; width: 100%; height: 2px; background: rgba(255,255,255,0.4); }
+
+/* ─── Letters ───────────────────────────────────────────────── */
+.ss-letter { position: absolute; font-size: 28px; font-weight: 800; animation: ssLetterFloat 3s ease-in-out infinite; text-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+@keyframes ssLetterFloat { 0%,100%{transform:translateY(0) rotate(-5deg)} 50%{transform:translateY(-8px) rotate(5deg)} }
+
+/* ─── Clock ─────────────────────────────────────────────────── */
+.ss-clock-face { position: absolute; top: 15%; left: 50%; transform: translateX(-50%); width: 70px; height: 70px; background: #FFF8E1; border-radius: 50%; border: 3px solid #5D4037; }
+.ss-clock-hand { position: absolute; bottom: 50%; left: 50%; transform-origin: bottom center; background: #333; border-radius: 2px; }
+.ss-hour-hand { width: 3px; height: 20px; transform: translateX(-50%) rotate(-30deg); }
+.ss-minute-hand { width: 2px; height: 28px; transform: translateX(-50%) rotate(60deg); animation: ssClockTick 4s steps(4) infinite; }
+@keyframes ssClockTick { 0%{transform:translateX(-50%) rotate(60deg)} 100%{transform:translateX(-50%) rotate(420deg)} }
+.ss-clock-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 6px; height: 6px; background: #333; border-radius: 50%; }
+.ss-clock-body { position: absolute; top: 55%; left: 50%; transform: translateX(-50%); width: 16px; height: 50px; background: #5D4037; border-radius: 0 0 4px 4px; }
+.ss-mouse { position: absolute; bottom: 28px; left: 55%; width: 10px; height: 8px; background: #9E9E9E; border-radius: 50%; animation: ssMouseRun 2s ease-in-out infinite; }
+.ss-mouse::after { content: ''; position: absolute; right: -6px; top: 3px; width: 8px; height: 2px; background: #9E9E9E; border-radius: 2px; }
+@keyframes ssMouseRun { 0%,100%{bottom:28px} 50%{bottom:60px} }
+
+/* ─── Hill & Well ───────────────────────────────────────────── */
+.ss-big-hill { position: absolute; bottom: 0; left: 20%; width: 60%; height: 80px; background: #66BB6A; border-radius: 50% 50% 0 0; }
+.ss-well { position: absolute; bottom: 55px; left: 55%; width: 20px; height: 16px; background: #8D6E63; border-radius: 2px; border: 2px solid #6D4C41; }
+.ss-well::before { content: ''; position: absolute; top: -10px; left: 50%; transform: translateX(-50%); width: 24px; height: 4px; background: #5D4037; border-radius: 2px; }
+.ss-pail { position: absolute; bottom: 50px; left: 65%; width: 10px; height: 12px; background: #90CAF9; border-radius: 0 0 2px 2px; border: 2px solid #42A5F5; }
+
+/* ─── Jack in the Box ───────────────────────────────────────── */
+.ss-jack-box { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); }
+.ss-box-base { width: 45px; height: 35px; background: #7B1FA2; border-radius: 4px; border: 2px solid #4A148C; }
+.ss-spring { position: absolute; top: -20px; left: 50%; transform: translateX(-50%); width: 4px; height: 20px; background: #9E9E9E; border-radius: 2px; animation: ssSpring 2s ease-in-out infinite; }
+@keyframes ssSpring { 0%,100%{height:20px;top:-20px} 50%{height:35px;top:-35px} }
+.ss-jack-head { position: absolute; top: -32px; left: 50%; transform: translateX(-50%); width: 18px; height: 18px; background: #FFD54F; border-radius: 50%; animation: ssJackPop 2s ease-in-out infinite; }
+.ss-jack-head::before { content: ''; position: absolute; top: 5px; left: 4px; width: 3px; height: 3px; background: #333; border-radius: 50%; box-shadow: 6px 0 0 #333; }
+@keyframes ssJackPop { 0%,100%{top:-32px} 50%{top:-48px} }
+
+/* ─── Patriot ───────────────────────────────────────────────── */
+.ss-hat { position: absolute; top: 20%; left: 50%; transform: translateX(-50%); }
+.ss-hat::before { content: ''; position: absolute; width: 30px; height: 25px; background: #5D4037; border-radius: 4px 4px 0 0; left: 50%; transform: translateX(-50%); }
+.ss-hat::after { content: ''; position: absolute; top: 25px; left: 50%; transform: translateX(-50%); width: 44px; height: 6px; background: #4E342E; border-radius: 3px; }
+.ss-feather { position: absolute; top: 15%; left: 58%; width: 4px; height: 25px; background: #FF9800; border-radius: 2px 2px 0 0; transform: rotate(15deg); }
+.ss-horse { position: absolute; bottom: 25px; left: 50%; transform: translateX(-50%); width: 40px; height: 30px; background: #8D6E63; border-radius: 8px; }
+.ss-horse::before { content: ''; position: absolute; top: -10px; right: -2px; width: 14px; height: 18px; background: #795548; border-radius: 6px 6px 0 0; }
+.ss-horse::after { content: ''; position: absolute; bottom: -8px; left: 6px; width: 5px; height: 10px; background: #6D4C41; border-radius: 2px; box-shadow: 22px 0 0 #6D4C41; }
+
+/* ─── Ground variations ─────────────────────────────────────── */
+.ss-ground-path { position: absolute; bottom: 0; width: 100%; height: 25px; background: #8D6E63; }
+.sc-party .scene-title { color: rgba(0,0,0,0.5); text-shadow: none; }
+.sc-happy .scene-title { color: rgba(0,0,0,0.5); text-shadow: none; }
+.sc-letters .scene-title { color: rgba(0,0,0,0.5); text-shadow: none; }
